@@ -1,5 +1,6 @@
 # Environment SETUP
-1)First create  virtual environment on your local system.You have two option either create using pip venv module using the listed link
+1) First create  virtual environment on your local system.You have two option either
+create using pip venv module using the listed link
 https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
 or using anaconda virtual environment setup
 
@@ -18,40 +19,41 @@ or using anaconda virtual environment setup
 
  # Section APIS 
  ## List  and Create: GET | POST 
-    -response of GET request show only those section whos parent field are null and they all are level 0 
-    -creation of section only requires title fields
-    -parent key in this case should be null so i make this read_only 
-    -all other fields are either read_only or automatically calculated
+- Response of GET request show only those section whos parent field are null and they all are level 0 
+- Creation of section only requires title fields
+- Parent key in this case should be null so i make this read_only 
+- All other fields are either read_only or automatically calculated
 ###  URL     /section/
 ###  http://127.0.0.1:8080/section/
 
 ## Detail,Update and Destroy GET | PUT | PATCH | DELETE
  - In update of Section api ,end user can change title of the section or he/she can change  this section to  subsection.
  - if the user make the section to subsection this instance will not show in this detail api because in case of section apis i mantain i  check parent is null 
- -- when a user update section to subsection the backend  always check that the instance and parent should not be same 
+ -  when a user update section to subsection the backend  always check that the instance and parent should not be same 
 
-### http://127.0.0.1:8080/section/1/detail/
+### http://127.0.0.1:8080/section/1/detail/ ###
 
 # SUBSECTION APIS
 ## LIST-CREATE GET | POST
--- it will show all the subsection of particular section
--- on create request (POST) use only pass title in parameter,parent field value will get from url
+1) It will show all the subsection of particular section.
+2) on create request (POST) use only pass title in parameter,parent field value will get from url
     
-# URL section/<menu_id>/subsection/
-# http://127.0.0.1:8080/section/1/subsection/
+### URL section/<menu_id>/subsection/ ###
+### http://127.0.0.1:8080/section/1/subsection/ ###
 
- ## Detail,Updateand delete 
--- in case of delete we have multiple scenario option are listed bellow 
+ ## Detail,Update & delete 
+ In case of delete we have multiple scenario option are listed bellow 
     [(0,"DELETE_ALL_SUBSECTION"),(1,"DELETE_ME_MAKE_SUBSECTION_ORPHAN"),(2,"DELETE_ME_MAKE_MY_SUBSECTION_LEVELUP")]
     so you can pass 0,1 or 2 to pass any one of these option in query_staring. if you dont want to pass  the 
     backend will delete the current instance only 
-### URL  /section/<menu_id>/subsection/<id>/detail/
-### http://127.0.0.1:8080/section/1/subsection/2/detail/
+### URL  /section/<menu_id>/subsection/<id>/detail/ ###
+### http://127.0.0.1:8080/section/1/subsection/2/detail/ ###
 
-# GRAPH QL Api Interface #
+
+# GRAPH QL API Interface #
  url for graphql interface
-### /graphql/
-###  http://127.0.0.1:8000/graphql/
+### /graphql/ ###
+###  http://127.0.0.1:8000/graphql/ ###
 
 ## Section ##
     query{
@@ -60,7 +62,7 @@ or using anaconda virtual environment setup
         title
     }
     }
-## Section detail ##
+## Section Detail ##
     query{
     sectionDetail (id:1){
         title,
@@ -68,7 +70,7 @@ or using anaconda virtual environment setup
     }
     }
 
-## Section create ##
+## Section Create ##
 mutation {
   createSection(title:"section graphql"){
     section{
@@ -76,7 +78,7 @@ mutation {
     }
   }
 }
-## Section update ##
+## Section Update ##
 mutation{
   updateSection(id:7,title:"update section test"){
     section{
@@ -93,7 +95,7 @@ mutation{
   }
 }
 
-## Section delete ##
+## Section Delete ##
 mutation{
   deleteSection(id:2){
     section{
@@ -102,14 +104,14 @@ mutation{
   }
 }
 
-## subsection api ##
+## Subsection List ##
     query{
         subsection (id:1){
             title,
             id
         }
     }
-## subsection create ##
+## Subsection Create ##
     mutation {
     createSubsection(title:"test2",parent:1){
     subsection{
@@ -117,7 +119,7 @@ mutation{
     }
     }
     }
-## subsection update ##
+## Subsection Update ##
 mutation{
 updateSubsection(id:3,title:"update subsection",parent:1){
   section{
@@ -126,7 +128,7 @@ updateSubsection(id:3,title:"update subsection",parent:1){
   }
 }
 }
-## subsection delete ##
+## Subsection Delete ##
 mutation{
   deleteSubsection(id:2){
     section{
