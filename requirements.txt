@@ -1,0 +1,4 @@
+Django==3.2.12
+djangorestframework==3.13.1
+graphene-django==2.15.0
+
